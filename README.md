@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dođi na blic — sajt fotografa Nikole Kneževića
 
-## Getting Started
+Next.js 16 sajt sa animacijama (GSAP + ScrollTrigger), smooth skrolom (Lenis), ikonicama iz `lucide-react` i fontom Plus Jakarta Sans.
 
-First, run the development server:
+Instagram ikonica je napravljena preko `createLucideIcon` (`src/components/ui/InstagramIcon.ts`), jer je lucide uklonio brend ikonice.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stranice
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Ruta | Sadržaj |
+| --- | --- |
+| `/` | Početna (hero, izjava, brojke, usluge, radovi, serije, pitanja) |
+| `/o-meni` | O fotografu, način rada, Instagram profili |
+| `/usluge` | Šest usluga + horizontalni skrol kroz proces rada |
+| `/radovi` | Kolekcije + cela galerija sa filterom i lightbox-om |
+| `/radovi/portreti`, `/radovi/ulica`, `/radovi/arhiva-zivota` | Pojedinačne kolekcije |
+| `/pitanja` | Česta pitanja po grupama |
+| `/kontakt` | Kontakt forma, DM, telefon i online zakazivanje |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Sadržaj
 
-## Learn More
+Fotografije i tekstovi su preuzeti sa Instagram profila **@dodji.na.blic** (radovi, opisi serija, telefon,
+link za zakazivanje) i **@_nikolaknezevic_** (Nikoline fotografije za stranicu „O meni“).
 
-To learn more about Next.js, take a look at the following resources:
+- **Fotografije** — `public/foto/portreti`, `public/foto/ulica`, `public/foto/zivot`, `public/foto/nikola`.
+  Za novu fotografiju snimi je u odgovarajući folder i dodaj red u `src/data/photos.ts` (širina, visina, opis).
+- **Kontakt podaci** — `src/data/site.ts` (telefon, mojfotograf.com, Instagram profili, email).
+  Email je prazan — dok je tako, forma kopira poruku i otvara Instagram DM.
+- **Brojke** — `src/data/site.ts` → `stats` (pratioci sa profila iz novembra 2026).
+- **Serije, usluge, proces i pitanja** — `src/data/content.ts`; tekst „O meni“ je u `src/app/o-meni/page.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Animacije
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Server komponente dodaju `data-anim` atribute, a `src/lib/animations.ts` ih pokreće
+(linije naslova, otkrivanje slika, reči koje se „pale“, brojači, paralaksa, rotacija).
+Prelaz između stranica je zavesa iz `src/lib/runtime.ts`, a koristi se kroz `TLink` umesto `next/link`.
+Sve animacije poštuju `prefers-reduced-motion`.

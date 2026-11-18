@@ -1,0 +1,86 @@
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 16px);
+  width: max-content;
+  animation: marquee 60s linear infinite;
+
+  .reverse & {
+    animation-direction: reverse;
+  }
+
+  .marquee:hover & {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  position: relative;
+  height: clamp(200px, 24vw, 340px);
+  overflow: hidden;
+  flex: none;
+
+  img {
+    object-fit: cover;
+    filter: grayscale(0.15);
+    transition:
+      filter 0.6s ease,
+      transform 1.2s var(--ease);
+  }
+
+  &:hover img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+  }
+}
+
+.text {
+  .track {
+    animation-duration: 40s;
+    gap: 0;
+  }
+}
+
+.word {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding-right: 0.4em;
+  font-size: clamp(56px, 10vw, 160px);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+
+  &:nth-child(even) {
+    color: var(--text);
+    -webkit-text-stroke: 0;
+  }
+}
+
+.star {
+  width: 0.4em;
+  height: 0.4em;
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

@@ -1,0 +1,214 @@
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(24px, 4vw, 60px);
+}
+
+.spot {
+  position: relative;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 0 var(--pad);
+  min-height: clamp(640px, 70vw, 900px);
+}
+
+.center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(100px, 11vw, 170px);
+}
+
+.title {
+  font-size: clamp(54px, 9vw, 140px);
+}
+
+.sub {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  max-width: 32ch;
+}
+
+.markWrap {
+  position: relative;
+  margin-top: clamp(24px, 4vw, 48px);
+  width: clamp(260px, 34vw, 480px);
+  aspect-ratio: 1;
+}
+
+.mark {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 30px 80px rgba(255, 255, 255, 0.08));
+}
+
+.markCta {
+  position: absolute;
+  left: 58%;
+  top: 46%;
+}
+
+/* ---------------- plutajuće kartice ---------------- */
+
+.cardLeft,
+.cardRight {
+  position: absolute;
+  z-index: 2;
+}
+
+.cardLeft {
+  left: clamp(16px, 6vw, 110px);
+  top: 4%;
+  width: clamp(150px, 15vw, 200px);
+}
+
+.cardRight {
+  right: clamp(16px, 4vw, 80px);
+  top: 26%;
+  width: clamp(160px, 17vw, 230px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  :global(.media) img {
+    transition: transform 1.2s var(--ease);
+  }
+
+  &:hover :global(.media) img {
+    transform: scale(1.08);
+  }
+}
+
+.cardRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: #d6d6d3;
+}
+
+.solid {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .spot {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .cardLeft,
+  .cardRight {
+    position: relative;
+    inset: auto;
+    width: 46%;
+  }
+
+  .cardLeft {
+    align-self: flex-start;
+  }
+
+  .cardRight {
+    align-self: flex-end;
+    margin-top: -40%;
+  }
+
+  .center {
+    padding-top: 56px;
+  }
+
+  .markCta {
+    left: calc(50% - 52px);
+    top: calc(50% - 52px);
+  }
+}
+
+/* ---------------- donji red ---------------- */
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 32px;
+  padding-top: clamp(40px, 6vw, 80px);
+  padding-bottom: 32px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+.flink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 130px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 12.5px;
+  color: #d6d6d3;
+  transition:
+    border-color 0.4s ease,
+    color 0.4s ease;
+
+  svg {
+    transition: transform 0.5s var(--ease);
+  }
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  &:hover svg {
+    transform: translate(2px, -2px) rotate(45deg);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+
+  @media (max-width: 900px) {
+    align-items: flex-start;
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 18px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #d6d6d3;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+}

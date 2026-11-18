@@ -1,0 +1,163 @@
+.list {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(22px, 2.6vw, 34px) clamp(12px, 2vw, 28px);
+  border-bottom: 1px solid var(--line);
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.7s var(--ease);
+    z-index: -1;
+  }
+
+  &.on::before,
+  &:focus-visible::before {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  transition: transform 0.7s var(--ease);
+
+  .on & {
+    transform: translateX(14px);
+  }
+}
+
+.title {
+  font-size: clamp(20px, 2.4vw, 34px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.count {
+  font-size: 13px;
+  color: var(--muted);
+  align-self: flex-start;
+}
+
+.thumb {
+  display: none;
+  position: relative;
+  width: 72px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  flex: none;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.icon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  overflow: hidden;
+  font-size: 22px;
+
+  svg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s var(--ease);
+  }
+}
+
+.iconB {
+  transform: translate(-100%, 100%);
+}
+
+.on .iconA {
+  transform: translate(100%, 100%);
+}
+.on .iconB {
+  transform: translate(0, 0);
+}
+
+/* plutajući pregled */
+.preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  width: clamp(200px, 18vw, 280px);
+  aspect-ratio: 4 / 5;
+  pointer-events: none;
+  overflow: hidden;
+  clip-path: inset(50% 50% 50% 50%);
+  transition: clip-path 0.7s var(--ease);
+}
+
+.show {
+  clip-path: inset(0 0 0 0);
+}
+
+.pimg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.15);
+  transition:
+    opacity 0.5s ease,
+    transform 1s var(--ease);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.pimgOn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pLabel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 760px) {
+  .preview {
+    display: none;
+  }
+
+  .thumb {
+    display: block;
+  }
+
+  .left {
+    flex: 1;
+  }
+}

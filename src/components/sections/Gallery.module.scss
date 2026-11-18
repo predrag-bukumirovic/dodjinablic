@@ -1,0 +1,177 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.filter {
+  height: 40px;
+  padding-inline: 18px;
+  border-radius: 99px;
+  border: 1px solid var(--line-2);
+  font-size: 13px;
+  color: var(--soft);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
+
+  sup {
+    font-size: 9.5px;
+    margin-left: 4px;
+    color: var(--muted);
+  }
+
+  &:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+}
+
+.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+
+  sup {
+    color: var(--bg);
+  }
+
+  &:hover {
+    color: var(--bg);
+  }
+}
+
+.grid {
+  columns: 3 300px;
+  column-gap: clamp(8px, 1vw, 14px);
+}
+
+.item {
+  display: block;
+  width: 100%;
+  margin-bottom: clamp(8px, 1vw, 14px);
+  break-inside: avoid;
+  cursor: zoom-in;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--surface);
+
+  img {
+    object-fit: cover;
+    transition:
+      transform 1.4s var(--ease),
+      filter 0.8s ease;
+  }
+
+  .item:hover & img {
+    transform: scale(1.06);
+  }
+}
+
+/* ---------------- lightbox ---------------- */
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  display: flex;
+  flex-direction: column;
+  animation: lbIn 0.5s ease both;
+}
+
+@keyframes lbIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.lbBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 8, 0.96);
+  cursor: zoom-out;
+}
+
+.lbFigure {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 32px var(--pad) 0;
+  pointer-events: none;
+  animation: lbImg 0.9s var(--ease) both;
+
+  figcaption {
+    font-size: 12.5px;
+    color: var(--muted);
+    text-align: center;
+  }
+}
+
+@keyframes lbImg {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.lbImg {
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 160px);
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.lbBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px var(--pad) 24px;
+}
+
+.lbCount {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.lbBtns {
+  display: flex;
+  gap: 10px;
+
+  button {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--line-2);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+
+    &:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+  }
+}
+
+.lbClose {
+  background: var(--text);
+  color: var(--bg);
+}

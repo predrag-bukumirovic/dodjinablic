@@ -1,0 +1,226 @@
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(40px, 7vw, 120px);
+  align-items: center;
+  padding-block: clamp(40px, 6vw, 80px);
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.introMedia {
+  position: relative;
+  padding-right: 12%;
+}
+
+.introSmall {
+  position: absolute;
+  right: 0;
+  bottom: -8%;
+  width: 38%;
+  border: 6px solid var(--bg);
+}
+
+.introText {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.introTitle {
+  font-size: clamp(30px, 3.4vw, 50px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 16ch;
+
+  em {
+    font-style: normal;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    background-position: 30% 0;
+  }
+}
+
+.paras {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--soft);
+  max-width: 54ch;
+}
+
+.sign {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.signName {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.marqueeSec {
+  padding-block: clamp(80px, 10vw, 140px) 0;
+}
+
+.statement {
+  padding-block: clamp(80px, 10vw, 150px) clamp(40px, 5vw, 60px);
+}
+
+.valuesHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px 48px;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+
+.valueGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 260px;
+  padding: clamp(20px, 2vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease;
+
+  h3 {
+    margin-top: auto;
+    font-size: clamp(24px, 2.2vw, 32px);
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  &:hover {
+    background: var(--surface-2);
+    border-color: var(--line-2);
+  }
+}
+
+.valueIcon {
+  width: 22px;
+  height: 22px;
+  fill: var(--text);
+  stroke: none;
+  transition: transform 0.8s var(--ease);
+
+  .value:hover & {
+    transform: rotate(90deg) scale(1.2);
+  }
+}
+
+.photoStrip {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2vw, 16px);
+  padding-block: clamp(20px, 3vw, 40px);
+}
+
+.profiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: clamp(40px, 5vw, 72px);
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 10px;
+  transition: border-color 0.4s ease;
+
+  :global(.media) img {
+    filter: grayscale(1);
+    transition:
+      filter 0.8s ease,
+      transform 1.2s var(--ease);
+  }
+
+  &:hover {
+    border-color: var(--line-2);
+  }
+
+  &:hover :global(.media) img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+  }
+}
+
+.profileBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 10px 12px;
+  font-size: 13px;
+}
+
+.profileTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profileArrow {
+  font-size: 20px;
+  transition: transform 0.6s var(--ease);
+
+  .profile:hover & {
+    transform: rotate(45deg);
+  }
+}
+
+.profileHandle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(36px, 4vw, 56px);
+}

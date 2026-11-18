@@ -1,0 +1,66 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+  padding-bottom: clamp(40px, 6vw, 80px);
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vw, 80px);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.groupTitle {
+  font-size: clamp(26px, 2.8vw, 40px);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.side {
+  height: 100%;
+}
+
+.sticky {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ask {
+  position: relative;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.askBody {
+  padding: 18px 8px 8px;
+  padding-right: 90px;
+}
+
+.askTitle {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.askBtn {
+  position: absolute;
+  right: 16px;
+  bottom: 18px;
+}
